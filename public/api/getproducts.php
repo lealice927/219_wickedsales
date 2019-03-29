@@ -24,10 +24,12 @@ while($row = mysqli_fetch_assoc($result)){
         // array_push($data[$currentID] ['images'], $image ); //old push way
         // $data[$currentID]['images'][count($data[$currentID]['images'])] = $image //this is just mean
     } else {
-        $row['images'] = [$images];
-        $row['id'] = intval($row['id']);
+        $image = $row['images'];
+        $row['images'] = [$image];
+        //the way i would write
         $row['price'] = intval($row['price']);
-           // $row['price'] = (int)$row['price']; using casting; popular in java and C
+        $row['price'] = (int)$row['price'];
+
         $data[$currentID] = $row;
         
     }
