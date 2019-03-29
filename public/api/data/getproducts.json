@@ -1,26 +1,19 @@
 {
     “success”: true,
-    “products”: [
-        {
+    “products”: [{
         “name”: “Wicked Thing”,
         “price”: 2000,
-        “image”: [“images/wickedpic.jpg”
-            ],
+        “images”: [“images/wickedpic.jpg”],
         “id”: 1
-        },
-        {
+    }, {
         “name”: “Wicked Shoes”,
         “price”: 42150,
-        “image”: [“images/wickedshoes.jpg”
-            ],
+        “images”: [“images/wickedshoes.jpg”],
         “id”: 2
-        },
-        {
+    }, {
         “name”: “Wicked Brick”,
         “price”: 525,
-        “image”: [“images/wickedbrick.jpg”
-            ],
+        “images”: [“images/wickedbrick.jpg”],
         “id”: 3
-        }
-    ]
-}
+    }]
+ }
