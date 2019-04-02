@@ -54,5 +54,8 @@ $json_output = json_encode($output);
 
 print($json_output);
 
+// readfile('./data/getproducts.json');
+
+require_once('mysqlconnect.php');
 
 ?>
