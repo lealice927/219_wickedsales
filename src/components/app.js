@@ -5,13 +5,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import ProductRoutes from './products';
 import Home from './home';
+import Nav from './nav';
 
 const App = () => (
     <div>
-        <div className="app">
+        <Nav />
             <Route exact path="/" component={Home}/>
             <Route path="/products" component={ProductRoutes} />
-        </div>
     </div>
 );
 
