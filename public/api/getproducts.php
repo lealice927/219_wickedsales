@@ -1,7 +1,7 @@
 <?php
-
-require_once('mysqlconnect.php');
+require_once('config.php');
 require_once('functions.php');
+require_once('mysqlconnect.php');
 
 set_exception_handler('handleError');
 
@@ -15,7 +15,7 @@ ORDER BY p.`id`';
 /*procedural*/
 $result = mysqli_query($conn, $query);
 
-if(!result){
+if(!$result){
     throw new Exception('invalid query: '. mysqli_error($conn));
 }
 
