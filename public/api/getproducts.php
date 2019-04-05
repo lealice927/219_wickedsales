@@ -1,8 +1,7 @@
 <?php
-require_once('config.php');
 require_once('functions.php');
+require_once('config.php');
 require_once('mysqlconnect.php');
-
 set_exception_handler('handleError');
 
 $query = 'SELECT p.`id`, p.`name`, p.`price`,
