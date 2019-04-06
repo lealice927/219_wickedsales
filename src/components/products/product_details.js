@@ -39,12 +39,30 @@ class ProductDetails extends Component {
             return <h1 className="center">No Product Found</h1>
         }
 
-        const { description = 'No description avaialable', name } = details;
+        const { description = 'No description available', name, images } = details;
+        //const images = details.images
+        // console.log(images)
+        // image = ["images/wicked-brick-1.jpg", "images/wicked-brick-2.jpg", "images/wicked-brick-3.jpg", "images/wicked-brick-4.jpg"]
+        // const imageElement = [];
+        // for (let i = 0; i < images.length; i++) {
+        //     imageElement.push(<img src={`/dist/${images[i]}`} />)
+        // }
+
+        
+        const imageList = images.map( (image, index) =>{
+            return (
+                <img key={index} src={`/dist/${image}`} />
+            )
+        })
 
         return (
             <div className="product-details">
                 <h1 className="center">{name}</h1>
                 <p>{description}</p>
+                <div>
+                    {/* {imageElement} */}
+                    {imageList}
+                </div>
             </div>
         );
     }
