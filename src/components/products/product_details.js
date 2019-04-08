@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ProductCarouself from './product_carousel';
+import ProductCarousel from './product_carousel';
 
 class ProductDetails extends Component {
     state = {
@@ -40,29 +42,23 @@ class ProductDetails extends Component {
         }
 
         const { description = 'No description available', name, images } = details;
-        //const images = details.images
-        // console.log(images)
-        // image = ["images/wicked-brick-1.jpg", "images/wicked-brick-2.jpg", "images/wicked-brick-3.jpg", "images/wicked-brick-4.jpg"]
-        // const imageElement = [];
-        // for (let i = 0; i < images.length; i++) {
-        //     imageElement.push(<img src={`/dist/${images[i]}`} />)
-        // }
-
         
-        const imageList = images.map( (image, index) =>{
-            return (
-                <img key={index} src={`/dist/${image}`} />
-            )
-        })
+
+        //================ MY WAY OF SHOWING ALL IMAGES IN THE ARRAY=========================//
+        // const imageList = images.map( (image, index) =>{
+        //     return (
+        //         <img key={index} src={`/dist/${image}`} />
+        //     )
+        // })
 
         return (
             <div className="product-details">
                 <h1 className="center">{name}</h1>
+                <ProductCarousel images={images} />
                 <p>{description}</p>
-                <div>
-                    {/* {imageElement} */}
+                {/* <div>
                     {imageList}
-                </div>
+                </div> */}
             </div>
         );
     }
