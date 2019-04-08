@@ -10,3 +10,13 @@ export function formatMoney(pennies){
     return `$${dollars}`; // There is 2 $'s because 1 will display and the other is the way template literal works
 
 }
+
+export function toWords(value){
+    let result = value.replace(/[A-Z]/g, function (letter) {
+        return ` ${letter}`;
+    });
+
+    result = result[0].toUpperCase() + result.slice(1);
+
+    return result;
+}
