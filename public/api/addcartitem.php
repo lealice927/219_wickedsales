@@ -4,8 +4,11 @@ set_exception_handler('handleError');
 require_once('config.php');
 require_once('mysqlconnect.php');
 
+if(empty($_GET['product_id'])){
+    throw new Exception('You must send a product id (int) with your request');
+}
 
-$products_id = 1;
+$products_id = intval($_GET['product_id']); //intval is sanitizing the data to prevent sql injection attacks (typecasting it, turns it into a number)
 $product_quantity = 1;
 $user_id = 1;
 
@@ -27,7 +30,7 @@ $product_price = (int)$product_data['price'];
 
 $product_total = $product_price * $product_quantity;
 
-if(empty($card_id)){
+if(empty($_SESSION['card_id'])){
     $cart_create_query = "INSERT INTO `carts` SET 
         `item_count` = $product_quantity,
         `total_price` = $product_total,
@@ -45,12 +48,17 @@ if(empty($card_id)){
         throw new Exception('data was not added to cart table');
     } 
     $cart_id = mysqli_insert_id($conn);
+    $_SESSION['card_id'] = $card_id;
+} else {
+    $card_id = $_SESSION['card_id'];
 }
 
 $cart_item_query = "INSERT INTO `cart_items` SET 
     `products_id` = $products_id, 
     `quantity` = $product_quantity, 
     `carts_id` = $cart_id
+    ON DUPLICATE KEY UPDATE
+    `quantity` = `quantity` + $product_quantity
 ";
 // print($cart_item_query);
 $cart_item_result = mysqli_query($conn, $cart_item_query);
