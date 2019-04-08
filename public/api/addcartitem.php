@@ -30,7 +30,7 @@ $product_price = (int)$product_data['price'];
 
 $product_total = $product_price * $product_quantity;
 
-if(empty($_SESSION['card_id'])){
+if(empty($_SESSION['cart_id'])){
     $cart_create_query = "INSERT INTO `carts` SET 
         `item_count` = $product_quantity,
         `total_price` = $product_total,
@@ -48,9 +48,9 @@ if(empty($_SESSION['card_id'])){
         throw new Exception('data was not added to cart table');
     } 
     $cart_id = mysqli_insert_id($conn);
-    $_SESSION['card_id'] = $card_id;
+    $_SESSION['cart_id'] = $cart_id;
 } else {
-    $card_id = $_SESSION['card_id'];
+    $cart_id = $_SESSION['cart_id'];
 }
 
 $cart_item_query = "INSERT INTO `cart_items` SET 
