@@ -38,7 +38,7 @@ if(empty($_SESSION['cart_id'])){
         `users_id` = $user_id,
         `changed` = NOW()
     ";
-    // print($cart_create_query);
+
     $cart_result = mysqli_query($conn, $cart_create_query);
 
     if(!$cart_result){
@@ -92,7 +92,7 @@ $cart_item_query = "INSERT INTO `cart_items` SET
     ON DUPLICATE KEY UPDATE
     `quantity` = `quantity` + $product_quantity
 ";
-// print($cart_item_query);
+
 $cart_item_result = mysqli_query($conn, $cart_item_query);
 
 if(!$cart_item_result){
@@ -108,10 +108,6 @@ $output = [
     'cartTotal' => $product_total
 ];
 
-// $json_output = json_encode($output);
-
-// print($json_output);
 print(json_encode($output));
-
 
 ?>
