@@ -65,6 +65,22 @@ if(empty($_SESSION['cart_id'])){
     if(mysqli_affected_rows($conn) === 0){
         throw new Exception('Cart data was not udpated');
     }
+
+    $cart_query = "SELECT `item_count`, `total_price` FROM `carts` WHERE `id` = $cart_id";
+
+    $cart_result = mysqli_query($conn, $cart_query);
+    
+    if(!$cart_result){
+        throw new Exception('Unable to get updated cart data');
+    }
+
+    if(mysqli_num_rows($cart_result)===0){
+        throw new Exception('No cart data found');
+    }
+
+    while($row = mysqli_fetch_assoc($cart_result)){
+        print_r($row);
+    }
 }
 
 $cart_item_query = "INSERT INTO `cart_items` SET 
