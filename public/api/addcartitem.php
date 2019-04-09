@@ -9,7 +9,7 @@ if(empty($_GET['product_id'])){
 }
 
 $products_id = intval($_GET['product_id']); //intval is sanitizing the data to prevent sql injection attacks (typecasting it, turns it into a number)
-$product_quantity = 1;
+$cart_quantity = $product_quantity = 1;
 $user_id = 1;
 
 $query = "SELECT `price` FROM `products` WHERE `id` = $products_id";
@@ -78,9 +78,11 @@ if(empty($_SESSION['cart_id'])){
         throw new Exception('No cart data found');
     }
 
-    while($row = mysqli_fetch_assoc($cart_result)){
-        print_r($row);
-    }
+    $row = mysqli_fetch_assoc($cart_result);
+    
+    $cart_quantity = $row['item_count'];
+    $product_total = $row['total_price'];
+    
 }
 
 $cart_item_query = "INSERT INTO `cart_items` SET 
@@ -102,7 +104,7 @@ if(mysqli_affected_rows($conn) === 0){
 
 $output = [
     'success' => true,
-    'cartCount' => $product_quantity,
+    'cartCount' => $cart_quantity,
     'cartTotal' => $product_total
 ];
 
