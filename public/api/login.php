@@ -46,7 +46,7 @@ if(mysqli_num_rows($result) !== 1){
 
 $data = mysqli_fetch_assoc($result);
 
-$token = $email . $data['id'] . microtime();
+$token = $email.$data['id'].microtime();
 $token = sha1($token); //reassigning the $token variable
 
 $connect_query = "INSERT INTO `user_connections` SET
@@ -56,7 +56,7 @@ $connect_query = "INSERT INTO `user_connections` SET
     `ip_address` = '{$_SERVER['REMOTE_ADDR']}'
 ";
 
-$connect_result = mysqli_query($conn, $query);
+$connect_result = mysqli_query($conn, $connect_query);
 
 if(!$connect_result){
     throw new Exception(mysqli_error($conn) ); 
