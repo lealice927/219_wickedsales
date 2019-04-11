@@ -33,7 +33,6 @@ class Cart extends Component {
         console.log('State:', this.state);
         const { items, meta } = this.state;
         let totalItems = 0;
-        console.log(items);
 
         const cartItems = items.map(({name, price, image, quantity, id}) => {
 
@@ -54,7 +53,7 @@ class Cart extends Component {
         });
 
         return (
-            <div>
+            <div className="cart">
                 <h1 className="center">Shopping Cart</h1>
 
                 <Link to="/products">Continue Shopping </Link>
