@@ -23,6 +23,9 @@ if(empty($input['password'])){
 
 $email = $input['email'];
 $password = $input['password'];
+
+$email = addslashes($email); //this sanitizies the email so no sql injection
+
 $hashedPassword = sha1($password);
 
 unset($input['password']); //this will get rid of the stored password
@@ -79,3 +82,4 @@ $json_output = json_encode($output);
 print($json_output);
 
 ?>
+
