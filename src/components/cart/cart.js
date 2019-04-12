@@ -30,7 +30,7 @@ class Cart extends Component {
     }
 
     render() {
-        console.log('State:', this.state);
+        // console.log('State:', this.state);
         const { items, meta } = this.state;
         let totalItems = 0;
 
