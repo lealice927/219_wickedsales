@@ -24,17 +24,26 @@ if(empty($input['password'])){
 $email = $input['email'];
 $password = $input['password'];
 
-$email = addslashes($email); //this sanitizies the email so no sql injection
+// $email = addslashes($email); //this sanitizies the email so no sql injection
+// ^^^^ based on the prepared statement below, this is now just an apostrophe
 
 $hashedPassword = sha1($password);
 
 unset($input['password']); //this will get rid of the stored password
 
+// $query = "SELECT `id`, `name` FROM `users` 
+//     WHERE `email` = '$email' AND `password` = '$hashedPassword'
+// ";
 $query = "SELECT `id`, `name` FROM `users` 
-    WHERE `email` = '$email' AND `password` = '$hashedPassword'
+    WHERE `email` = ? AND `password` = ?
 ";
 
-$result = mysqli_query($conn, $query); //send query result
+$statement = mysqli_prepare($conn, $query); //1) send the safe query to the DB
+mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword); //2) send the dangerous data to the DB
+mysqli_stmt_execute($statement); //3) tell the DB to mix the query and the data
+$result = mysqli_stmt_get_result($statement); //4) get the result pointer for the prepared query statement's data
+
+// $result = mysqli_query($conn, $query); //send query result >>> // not needed anymore bc of prepared statements
 
 if(!$result){
     throw new Exception(mysqli_error($conn) ); //if query fails we get this message
