@@ -42,7 +42,9 @@ function validate({name, email, password, confirmpassword}) {
     }
 
     if(!confirmpassword) {
-        errors.confirmpassword = 'Password does not match';
+        errors.confirmpassword = 'Required';
+    } else if (confirmpassword !== password ){
+        errors.confirmpassword = 'Error! Password did not match!';
     }
 
     return errors;
