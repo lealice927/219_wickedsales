@@ -3,13 +3,10 @@ const DEFAULT_STATE = {
     username: ''
 };
 
-// const exampleAction = {
-//     type: 'LOG_USER_IN',
-//     username: 'Jim'
-// }
-
 function userReducer(state = DEFAULT_STATE, action) { //an action is just an object, it has to have a type property as commented out above
     switch (action.type) {
+        case 'SIGN_IN':
+            return {...state, auth: true};
         default: 
             return state;
     }
