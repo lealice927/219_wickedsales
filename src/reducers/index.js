@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import userReducer from './user_reducer';
+import productsReducer from './products_reducer';
 
 //whatever we put into "user" will be our state
 const rootReducer = combineReducers({
     form: formReducer, 
+    products: productsReducer,
     user: userReducer //if user says "trolls" it has to match in the const state
                       // userReducer is a function that is assigned to the user state
 });

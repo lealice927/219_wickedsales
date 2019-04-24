@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SignUpForm from './sign_up_form';
+// import './signup.scss';
+
 
 class SignUp extends Component {
     handleSignUp(values){
