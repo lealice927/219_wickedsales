@@ -12,7 +12,7 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
-        this.props.getProducts();
+        this.props.getAllProducts();
     }
 
     goToDetails(id) {

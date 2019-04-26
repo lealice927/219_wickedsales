@@ -11,3 +11,5 @@ if(!empty($_SESSION['user'])){
 }
 
 print(json_encode($output));
+
+?>

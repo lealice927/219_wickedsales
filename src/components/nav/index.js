@@ -9,7 +9,7 @@ class Nav extends Component {
     state = {
         authLinks: [
             {
-                to: '/my-account/orders',
+                to: '/account/orders',
                 text: 'My Orders'
             },
             {
